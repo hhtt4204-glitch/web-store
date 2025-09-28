@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Open index.html in Edge",
+            "type": "msedge",
+            "request": "launch",
+            "url": "file:///C:/Users/moham.DESKTOP-CMBOPPT/.vscode/store-website/src/index.html",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Open site on localhost:3000 in Edge",
+            "type": "msedge",
+            "request": "launch",
+            "url": "http://localhost:3000/",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+}
+

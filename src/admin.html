@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Contact Messages</title>
+  <style>
+    body {
+      background: #f7f6f3;
+      color: #23222b;
+      font-family: 'Segoe UI', 'Cairo', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      padding: 1.5rem 0 1rem 0;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      background: #e2b887;
+      color: #23222b;
+      letter-spacing: 1px;
+    }
+    .messages-container {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(34,34,34,0.07);
+      padding: 2rem;
+    }
+    .message {
+      border-bottom: 1px solid #eee;
+      padding: 1rem 0;
+    }
+    .message:last-child {
+      border-bottom: none;
+    }
+    .message strong {
+      color: #e2b887;
+    }
+    .message .date {
+      color: #888;
+      font-size: 0.9rem;
+      margin-left: 10px;
+    }
+    .no-messages {
+      text-align: center;
+      color: #aaa;
+      margin-top: 2rem;
+    }
+    .password-form {
+      max-width: 350px;
+      margin: 3rem auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(34,34,34,0.07);
+      padding: 2rem;
+      text-align: center;
+    }
+    .password-form input {
+      width: 80%;
+      padding: 0.7rem;
+      margin: 0.5rem 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    .password-form button {
+      background: #e2b887;
+      color: #23222b;
+      border: none;
+      border-radius: 10px;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background 0.2s;
+    }
+    .password-form button:hover {
+      background: #f1d6b8;
+    }
+    .error-message {
+      color: red;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>Admin - Contact Messages</header>
+  <div id="admin-content"></div>
+  <script>
+    const PASSWORD = "ipeururgçà'yh";
+    const adminContent = document.getElementById('admin-content');
+
+    function showPasswordForm() {
+      adminContent.innerHTML = `
+        <form class="password-form" id="password-form">
+          <h2>Enter Admin Password</h2>
+          <input type="password" id="admin-password" placeholder="Password" required>
+          <br>
+          <button type="submit">Login</button>
+          <div class="error-message" id="error-message" style="display:none;">Incorrect password.</div>
+        </form>
+      `;
+      document.getElementById('password-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const input = document.getElementById('admin-password').value;
+        if (input === PASSWORD) {
+          showMessages();
+        } else {
+          document.getElementById('error-message').style.display = 'block';
+        }
+      });
+    }
+
+    function showMessages() {
+      const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+      if (messages.length === 0) {
+        adminContent.innerHTML = '<div class="messages-container"><div class="no-messages">No messages yet.</div></div>';
+      } else {
+        let html = '<div class="messages-container">';
+        messages.reverse().forEach(msg => {
+          html += `
+            <div class="message">
+              <strong>${msg.name}</strong> &lt;${msg.email}&gt;
+              <span class="date">${new Date(msg.date).toLocaleString()}</span>
+              <div>${msg.message}</div>
+            </div>
+          `;
+        });
+        html += '</div>';
+        adminContent.innerHTML = html;
+      }
+    }
+
+    showPasswordForm();
+  </script>
+</body>
+</html>

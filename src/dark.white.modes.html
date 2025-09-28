@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modes Example</title>
+  <style>
+    body {
+      background: #f7f6f3;
+      color: #23222b;
+      transition: background 0.4s, color 0.4s;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+    }
+    body.dark-mode {
+      background: #23222b;
+      color: #f7f6f3;
+    }
+    #dark-mode-toggle {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      background: #e2b887;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 4px 24px rgba(34,34,34,0.07);
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.3s;
+      z-index: 100;
+      font-size: 28px;
+    }
+    #dark-mode-toggle:hover {
+      background: #f1d6b8;
+    }
+  </style>
+</head>
+<body>
+  <button id="dark-mode-toggle" title="Toggle dark mode">🌙</button>
+  <script>
+    const toggleBtn = document.getElementById('dark-mode-toggle');
+    function updateDarkModeIcon() {
+      if (document.body.classList.contains('dark-mode')) {
+        // In dark mode: show sun icon (yellow)
+        toggleBtn.textContent = "☀️";
+        toggleBtn.title = "Switch to light mode";
+      } else {
+        // In light mode: show moon icon
+        toggleBtn.textContent = "🌙";
+        toggleBtn.title = "Switch to dark mode";
+      }
+    }
+    toggleBtn.addEventListener('click', function() {
+      document.body.classList.toggle('dark-mode');
+      updateDarkModeIcon();
+    });
+    updateDarkModeIcon();
+  </script>
+</body>
+</html>
