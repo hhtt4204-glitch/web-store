@@ -1,115 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Collections - Astro Store</title>
-  <style>
-    body {
-      background: #f7f6f3;
-      color: #23222b;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    .collection-title {
-      font-size: 2rem;
-      font-weight: bold;
-      margin: 2rem 0 1.5rem 0;
-      text-align: center;
-    }
-    .products-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-      margin-bottom: 2rem;
-    }
-    .product-card {
-      background: #fff;
-      color: #23222b;
-      border-radius: 18px;
-      box-shadow: 0 4px 24px rgba(34,34,34,0.07);
-      padding: 2rem 1.5rem;
-      text-align: center;
-      min-width: 180px;
-      max-width: 220px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .product-card img {
-      width: 70px;
-      height: 70px;
-      margin-bottom: 1rem;
-      object-fit: contain;
-      border-radius: 12px;
-      background: #e3e9f7;
-    }
-    .product-card .diamond-amount {
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-    }
-    .product-card .price {
-      font-size: 1.1rem;
-      color: #e2b887;
-      margin-bottom: 1rem;
-    }
-    .product-card button {
-      background: #e2b887;
-      color: #23222b;
-      border: none;
-      border-radius: 10px;
-      padding: 0.6rem 1.2rem;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .product-card button:hover {
-      background: #f1d6b8;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collections</title>
+    <link rel="stylesheet" href="../styles/main.css">
 </head>
 <body>
-  <div class="collection-title">Free Fire Diamond Collection</div>
-  <div class="products-grid">
-    <div class="product-card">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjxb7VWyBuX-aSDrucrdqtKsTaCfPDAKUt2ECWRF0rGNmGWngv" alt="100 Diamond">
-      <div class="diamond-amount">100 Diamonds</div>
-      <div class="price">4.5 DT</div>
-      <button>Buy Now</button>
+    <div id="header">
+        <!-- Include header component -->
+        <!-- Add header.html content here -->
     </div>
-    <div class="product-card">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjxb7VWyBuX-aSDrucrdqtKsTaCfPDAKUt2ECWRF0rGNmGWngv" alt="200 Diamond">
-      <div class="diamond-amount">200 Diamonds</div>
-      <div class="price">9.5 DT</div>
-      <button>Buy Now</button>
+
+    <main>
+        <h1>Our Collections</h1>
+        <div class="product-collection">
+            <!-- Example of product cards -->
+            <div class="product-card">
+                <!-- Include product-card component -->
+                <!-- Add product-card.html content here -->
+            </div>
+            <div class="product-card">
+                <!-- Include product-card component -->
+                <!-- Add product-card.html content here -->
+            </div>
+            <!-- More product cards can be added here -->
+        </div>
+    </main>
+
+    <div id="footer">
+        <!-- Include footer component -->
+        <!-- Add footer.html content here -->
     </div>
-    <div class="product-card">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjxb7VWyBuX-aSDrucrdqtKsTaCfPDAKUt2ECWRF0rGNmGWngv" alt="500 Diamond">
-      <div class="diamond-amount">500 Diamonds</div>
-      <div class="price">20 DT</div>
-      <button>Buy Now</button>
-    </div>
-    <div class="product-card">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjxb7VWyBuX-aSDrucrdqtKsTaCfPDAKUt2ECWRF0rGNmGWngv" alt="1000 Diamond">
-      <div class="diamond-amount">1000 Diamonds</div>
-      <div class="price">40.5 DT</div>
-      <button>Buy Now</button>
-    </div>
-    <div class="product-card">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjxb7VWyBuX-aSDrucrdqtKsTaCfPDAKUt2ECWRF0rGNmGWngv" alt="2000 Diamond">
-      <div class="diamond-amount">2000 Diamonds</div>
-      <div class="price">85 DT</div>
-      <button>Buy Now</button>
-    </div>
-    <div class="product-card">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjxb7VWyBuX-aSDrucrdqtKsTaCfPDAKUt2ECWRF0rGNmGWngv" alt="5000 Diamond">
-      <div class="diamond-amount">5000 Diamonds</div>
-      <div class="price">180 DT</div>
-      <button>Buy Now</button>
-    </div>
-  </div>
+
+    <script src="../scripts/app.js"></script>
 </body>
 </html>
