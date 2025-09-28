@@ -1,38 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Collections</title>
-    <link rel="stylesheet" href="../styles/main.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collections - Astro Store</title>
+  <style>
+    :root {
+      --bg-light: linear-gradient(135deg, #f7f6f3 0%, #e3e9f7 100%);
+      --bg-dark: linear-gradient(135deg, #23222b 0%, #35344a 100%);
+      --text-light: #23222b;
+      --text-dark: #f7f6f3;
+      --accent-cozy: #e2b887;
+      --card-bg-light: #fff;
+      --card-bg-dark: #2c2b36;
+      --shadow-cozy: 0 4px 24px rgba(34,34,34,0.07);
+    }
+    body {
+      background: var(--bg-light);
+      color: var(--text-light);
+      transition: background 0.4s, color 0.4s;
+      font-family: 'Segoe UI', 'Cairo', Arial, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+    }
+    body.dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+    header {
+      position: relative;
+      height: 70px;
+    }
+    .cozy-nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      position: absolute;
+      left: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .cozy-nav a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      font-size: 1.1rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .cozy-nav a:hover {
+      background: var(--accent-cozy);
+      color: #23222b;
+    }
+    body.dark-mode .cozy-nav a {
+      color: var(--text-dark);
+    }
+    body.dark-mode .cozy-nav a:hover {
+      background: var(--accent-cozy);
+      color: #23222b;
+    }
+    #dark-mode-toggle {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      background: var(--accent-cozy);
+      border: none;
+      border-radius: 50%;
+      box-shadow: var(--shadow-cozy);
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    #dark-mode-toggle:hover {
+      background: #f1d6b8;
+    }
+    #dark-mode-toggle img {
+      width: 28px;
+      height: 28px;
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 70vh;
+      margin-top: 2rem;
+    }
+    .collection-title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+    }
+    .products-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .product-card {
+      background: var(--card-bg-light);
+      color: var(--text-light);
+      border-radius: 18px;
+      box-shadow: var(--shadow-cozy);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      min-width: 180px;
+      max-width: 220px;
+      transition: background 0.3s, color 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .product-card img {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 1rem;
+      object-fit: contain;
+      border-radius: 12px;
+      background: #e3e9f7;
+    }
+    .product-card .diamond-amount {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .product-card .price {
+      font-size: 1.1rem;
+      color: #e2b887;
+      margin-bottom: 1rem;
+    }
+    .product-card button {
+      background: var(--accent-cozy);
+      color: #23222b;
+      border: none;
+      border-radius: 10px;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .product-card button:hover {
+      background: #f1d6b8;
+    }
+    body.dark-mode .product-card {
+      background: var(--card-bg-dark);
+      color: var(--text-dark);
+    }
+    body.dark-mode .product-card .price {
+      color: #ffe0b2;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem 0 0.5rem 0;
+      color: #aaa;
+      font-size: 1rem;
+    }
+  </style>
 </head>
 <body>
-    <div id="header">
-        <!-- Include header component -->
-        <!-- Add header.html content here -->
+  <header>
+    <nav class="cozy-nav">
+      <a href="index.html">Home</a>
+      <a href="collections.html">Collections</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="admin.html" style="color:#e2b887;">Admin</a>
+    </nav>
+    <button id="dark-mode-toggle" title="Toggle dark mode">
+      <img src="https://cdn-icons-png.flaticon.com/512/5261/5261850.png" alt="Dark Mode Icon">
+    </button>
+  </header>
+  <main>
+    <div class="collection-title">Free Fire Diamond Collection</div>
+    <div class="products-grid">
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjxb7VWyBuX-aSDrucrdqtKsTaCfPDAKUt2ECWRF0rGNmGWngv" alt="100 Diamond">
+        <div class="diamond-amount">100 Diamonds</div>
+        <div class="price">4.5 DT</div>
+        <button>Buy Now</button>
+      </div>
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjxb7VWyBuX-aSDrucrdqtKsTaCfPDAKUt2ECWRF0rGNmGWngv" alt="200 Diamond">
+        <div class="diamond-amount">200 Diamonds</div>
+        <div class="price">9.5 DT</div>
+        <button>Buy Now</button>
+      </div>
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjxb7VWyBuX-aSDrucrdqtKsTaCfPDAKUt2ECWRF0rGNmGWngv" alt="500 Diamond">
+        <div class="diamond-amount">500 Diamonds</div>
+        <div class="price">20 DT</div>
+        <button>Buy Now</button>
+      </div>
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjxb7VWyBuX-aSDrucrdqtKsTaCfPDAKUt2ECWRF0rGNmGWngv" alt="1000 Diamond">
+        <div class="diamond-amount">1000 Diamonds</div>
+        <div class="price">40.5 DT</div>
+        <button>Buy Now</button>
+      </div>
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjxb7VWyBuX-aSDrucrdqtKsTaCfPDAKUt2ECWRF0rGNmGWngv" alt="2000 Diamond">
+        <div class="diamond-amount">2000 Diamonds</div>
+        <div class="price">85 DT</div>
+        <button>Buy Now</button>
+      </div>
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjxb7VWyBuX-aSDrucrdqtKsTaCfPDAKUt2ECWRF0rGNmGWngv" alt="5000 Diamond">
+        <div class="diamond-amount">5000 Diamonds</div>
+        <div class="price">180 DT</div>
+        <button>Buy Now</button>
+      </div>
     </div>
-
-    <main>
-        <h1>Our Collections</h1>
-        <div class="product-collection">
-            <!-- Example of product cards -->
-            <div class="product-card">
-                <!-- Include product-card component -->
-                <!-- Add product-card.html content here -->
-            </div>
-            <div class="product-card">
-                <!-- Include product-card component -->
-                <!-- Add product-card.html content here -->
-            </div>
-            <!-- More product cards can be added here -->
-        </div>
-    </main>
-
-    <div id="footer">
-        <!-- Include footer component -->
-        <!-- Add footer.html content here -->
-    </div>
-
-    <script src="../scripts/app.js"></script>
+  </main>
+  <footer>
+    &copy; 2025 Astro Store. All rights reserved.
+  </footer>
+  <script>
+    document.getElementById('dark-mode-toggle').addEventListener('click', function() {
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
 </body>
 </html>
