@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AstroStoreTun
 
 AstroStoreTun is a simple, modular e-commerce store template for showcasing product collections. It’s designed for easy extension and customization.
@@ -47,3 +48,6 @@ You can deploy this site using [GitHub Pages](https://pages.github.com/) or any 
 ## License
 
 MIT License
+=======
+# ASTRO-STORE-WEB
+>>>>>>> 26a702d127047250c52ba7f610cedb833d1487cb
