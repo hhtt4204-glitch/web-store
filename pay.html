@@ -2,105 +2,119 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Payment - Astro Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pay with Credit Card (Tunisia Only)</title>
   <style>
     body {
       background: #f7f6f3;
-      color: #23222b;
       font-family: 'Segoe UI', Arial, sans-serif;
-      min-height: 100vh;
       margin: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      padding: 0;
+      color: #23222b;
     }
-    .pay-card {
+    .pay-container {
+      max-width: 500px;
+      margin: 60px auto;
       background: #fff;
       border-radius: 18px;
       box-shadow: 0 4px 24px rgba(34,34,34,0.07);
-      padding: 2.5rem 2rem;
+      padding: 2.5rem 2rem 2rem 2rem;
       text-align: center;
-      max-width: 400px;
     }
-    .pay-card h2 {
-      margin-bottom: 1rem;
-    }
-    .pay-card .amount {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-    }
-    #real-pay-link {
-      display: inline-block;
-      padding: 0.8rem 2rem;
+    .receiver {
       font-size: 1.1rem;
-      color: #fff;
-      background: #007bff;
-      border-radius: 6px;
-      text-decoration: none;
-      margin-top: 1rem;
+      margin-bottom: 1.2rem;
+      color: #e2b887;
+      font-weight: bold;
     }
-    #real-pay-link:hover {
-      background: #0056b3;
+    .amount {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #23222b;
     }
-    /* Dark mode styles */
-    body.dark-mode {
-      background: #121212;
-      color: #e0e0e0;
+    .product {
+      font-size: 1.1rem;
+      margin-bottom: 2.2rem;
+      color: #888;
     }
-    .pay-card.dark-mode {
-      background: #1e1e1e;
-      color: #e0e0e0;
+    .pay-btn {
+      display: block;
+      width: 90%;
+      margin: 0.7rem auto;
+      background: linear-gradient(90deg, #e2b887 60%, #f1d6b8 100%);
+      color: #23222b;
+      border: none;
+      border-radius: 10px;
+      padding: 1rem 0;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(34,34,34,0.04);
     }
-    #real-pay-link.dark-mode {
-      background: #007bff;
+    .pay-btn:hover {
+      background: linear-gradient(90deg, #f1d6b8 60%, #e2b887 100%);
+    }
+    .info-box {
+      background: #f6f3e7;
+      border-radius: 10px;
+      padding: 1rem;
+      font-size: 0.98rem;
+      color: #666;
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      justify-content: center;
     }
   </style>
 </head>
 <body>
-  <div class="pay-card">
-    <h2>Pay with Credit Card (Tunisia Only)</h2>
-    <div class="amount" id="product-info"></div>
-    <a id="real-pay-link" href="#" target="_blank">Pay Now</a>
-    <br>
-    <button id="dark-mode-toggle" style="margin-top: 1rem; background: none; border: none; cursor: pointer;">
-      <img id="dark-mode-icon" src="https://cdn-icons-png.flaticon.com/512/5261/5261850.png" alt="Toggle dark mode" width="24" height="24">
-    </button>
-    <span id="dark-mode-text" style="color: #007bff; cursor: pointer;">Transfer to dark</span>
+  <div class="pay-container">
+    <div class="receiver">Receiver: Astro Store</div>
+    <div class="amount" id="amount">-- TND</div>
+    <div class="product" id="product"></div>
+    <button class="pay-btn" id="eDinarBtn">Pay with E-Dinar (D17)</button>
+    <button class="pay-btn" id="konnectBtn">Pay with Konnect</button>
+    <div class="info-box">
+      <span>🔒</span>
+      You will be redirected to a secure payment page to complete your purchase.
+    </div>
   </div>
   <script>
-    // Show product info
-    const params = new URLSearchParams(window.location.search);
-    const amount = params.get('amount');
-    const price = params.get('price');
-    document.getElementById('product-info').textContent =
-      `${amount} Diamonds — ${price} DT`;
+    // Replace these with your real payment links!
+    const EDINAR_LINK = "https://www.e-dinar.poste.tn/payment/your-merchant-id?amount={amount}&desc={desc}";
+    const KONNECT_LINK = "https://gateway.konnect.network/pay/payment_ref=YOUR_PAYMENT_REF";
 
-    // Your real payment link from your provider (replace this with your real link)
-    const paymentLink = "https://gateway.konnect.network/pay/payment_ref=YOUR_PAYMENT_ID";
-    document.getElementById('real-pay-link').href = paymentLink;
-
-    // Dark mode toggle logic
-    const toggleBtn = document.getElementById('dark-mode-toggle');
-    const icon = document.getElementById('dark-mode-icon');
-    const text = document.getElementById('dark-mode-text');
-    function updateDarkModeIcon() {
-      if (document.body.classList.contains('dark-mode')) {
-        icon.src = "https://cdn-icons-png.flaticon.com/512/869/869869.png"; // sun icon
-        toggleBtn.title = "Switch to light mode";
-        text.textContent = "Transfer to white";
-      } else {
-        icon.src = "https://cdn-icons-png.flaticon.com/512/5261/5261850.png"; // moon icon
-        toggleBtn.title = "Switch to dark mode";
-        text.textContent = "Transfer to dark";
-      }
+    // Get product and price from URL
+    function getQueryParam(name) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name) || '';
     }
-    toggleBtn.addEventListener('click', function() {
-      document.body.classList.toggle('dark-mode');
-      updateDarkModeIcon();
+    const amount = getQueryParam('price');
+    const product = getQueryParam('product');
+
+    let displayAmount = amount ? amount.replace('DT', 'TND') : '-- TND';
+    if (!displayAmount.includes('TND') && displayAmount !== '-- TND') {
+      displayAmount += ' TND';
+    }
+    document.getElementById('amount').textContent = displayAmount;
+    document.getElementById('product').textContent = product ? 'Product: ' + product : '';
+
+    // E-Dinar button
+    document.getElementById('eDinarBtn').addEventListener('click', function() {
+      // Replace {amount} and {desc} in your E-Dinar link
+      const link = EDINAR_LINK.replace('{amount}', encodeURIComponent(amount)).replace('{desc}', encodeURIComponent(product));
+      window.location.href = link;
     });
-    updateDarkModeIcon();
+
+    // Konnect button
+    document.getElementById('konnectBtn').addEventListener('click', function() {
+      // If your Konnect link supports dynamic amount/product, add them as query params
+      // Otherwise, just use your static link
+      window.location.href = KONNECT_LINK;
+    });
   </script>
 </body>
 </html>

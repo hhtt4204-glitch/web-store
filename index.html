@@ -29,7 +29,8 @@
     }
     header {
       position: relative;
-      height: 70px;
+      height: 80px;
+      z-index: 10;
     }
     .cozy-nav {
       display: flex;
@@ -75,6 +76,7 @@
       justify-content: center;
       cursor: pointer;
       transition: background 0.3s;
+      z-index: 11;
     }
     #dark-mode-toggle:hover {
       background: #f1d6b8;
@@ -83,6 +85,29 @@
       width: 28px;
       height: 28px;
       transition: filter 0.3s;
+    }
+    .auth-top-links {
+      position: absolute;
+      top: 38px;     /* move down */
+      right: 180px;  /* move left */
+      font-size: 1.08rem;
+      z-index: 12;
+      display: flex;
+      align-items: center;
+    }
+    .auth-top-links a {
+      color: #ffe080;
+      text-decoration: none;
+      margin: 0 8px;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+    .auth-top-links a:hover {
+      color: #e2b887;
+      text-decoration: underline;
+    }
+    .auth-top-links span {
+      color: #ffe080;
     }
     main {
       display: flex;
@@ -147,6 +172,14 @@
       color: #aaa;
       font-size: 1rem;
     }
+    .center-box {
+      max-width: 420px;
+      margin: 60px 0 60px 80px; /* Top, Right, Bottom, Left */
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(34,34,34,0.07);
+      padding: 2.5rem 2rem 2rem 2rem;
+    }
   </style>
 </head>
 <body>
@@ -157,6 +190,11 @@
       <a href="contact.html">Contact Us</a>
       <a href="admin.html" style="color:#e2b887;">Admin</a>
     </nav>
+    <div class="auth-top-links">
+      <a href="src/auth.html">Sign In</a>
+      <span>|</span>
+      <a href="src/auth.html">Sign Up</a>
+    </div>
     <button id="dark-mode-toggle" title="Toggle dark mode">
       <img id="dark-mode-icon" src="https://cdn-icons-png.flaticon.com/512/5261/5261850.png" alt="Dark Mode Icon">
     </button>
@@ -171,10 +209,56 @@
       <a href="collections.html" class="cozy-link-card">Cozy Collections</a>
       <a href="contact.html" class="cozy-link-card">Contact Us</a>
     </div>
+    <div class="center-box">
+      <!-- Center box content can go here -->
+      <h2 style="text-align:center; color: var(--text-light);">Featured Products</h2>
+      <div style="display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center;">
+        <div style="background: var(--card-bg-light); border-radius:12px; padding:1.5rem; box-shadow:var(--shadow-cozy); width:180px;">
+          <img src="https://via.placeholder.com/150" alt="Product 1" style="width:100%; border-radius:10px;">
+          <h3 style="font-size:1.1rem; margin:0.5rem 0; color: var(--text-light);">Product 1</h3>
+          <p style="font-size:0.9rem; color:#666;">Short description of product 1.</p>
+          <div style="margin-top:0.8rem;">
+            <a href="#" style="text-decoration:none; background: var(--accent-cozy); color:#23222b; padding:0.6rem 1.2rem; border-radius:8px; font-weight:500; display:inline-block;">View Details</a>
+          </div>
+        </div>
+        <div style="background: var(--card-bg-light); border-radius:12px; padding:1.5rem; box-shadow:var(--shadow-cozy); width:180px;">
+          <img src="https://via.placeholder.com/150" alt="Product 2" style="width:100%; border-radius:10px;">
+          <h3 style="font-size:1.1rem; margin:0.5rem 0; color: var(--text-light);">Product 2</h3>
+          <p style="font-size:0.9rem; color:#666;">Short description of product 2.</p>
+          <div style="margin-top:0.8rem;">
+            <a href="#" style="text-decoration:none; background: var(--accent-cozy); color:#23222b; padding:0.6rem 1.2rem; border-radius:8px; font-weight:500; display:inline-block;">View Details</a>
+          </div>
+        </div>
+        <div style="background: var(--card-bg-light); border-radius:12px; padding:1.5rem; box-shadow:var(--shadow-cozy); width:180px;">
+          <img src="https://via.placeholder.com/150" alt="Product 3" style="width:100%; border-radius:10px;">
+          <h3 style="font-size:1.1rem; margin:0.5rem 0; color: var(--text-light);">Product 3</h3>
+          <p style="font-size:0.9rem; color:#666;">Short description of product 3.</p>
+          <div style="margin-top:0.8rem;">
+            <a href="#" style="text-decoration:none; background: var(--accent-cozy); color:#23222b; padding:0.6rem 1.2rem; border-radius:8px; font-weight:500; display:inline-block;">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
   <footer>
     &copy; 2025 Astro Store. All rights reserved.
   </footer>
+  <!-- Firebase App (the core Firebase SDK) -->
+<script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js"></script>
+<!-- Firebase Authentication -->
+<script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBrr8K7onFb4vFcU_E5f4aNwHsSt",
+    authDomain: "web-store-3f40.firebaseapp.com",
+    projectId: "web-store-3f40",
+    storageBucket: "web-store-3f40.appspot.com",
+    messagingSenderId: "173269597997",
+    appId: "1:173269597997:web-9087bcfbd5f153c859d9de",
+    measurementId: "G-G4MF2FX6P0"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
   <script>
     // Dark mode toggle logic
     const toggleBtn = document.getElementById('dark-mode-toggle');
@@ -183,12 +267,12 @@
       if (document.body.classList.contains('dark-mode')) {
         // In dark mode: show sun icon (for switching to light)
         icon.src = "https://cdn-icons-png.flaticon.com/512/869/869869.png"; // sun icon
-        icon.style.filter = "brightness(1.2) sepia(1) hue-rotate(10deg) saturate(5)"; // Make sun icon yellow
+        icon.style.filter = "brightness(1.2) sepia(1) hue-rotate(10deg) saturate(5)";
         toggleBtn.title = "Switch to light mode";
       } else {
         // In light mode: show moon icon (for switching to dark)
         icon.src = "https://cdn-icons-png.flaticon.com/512/5261/5261850.png"; // moon icon
-        icon.style.filter = ""; // Normal moon icon
+        icon.style.filter = "";
         toggleBtn.title = "Switch to dark mode";
       }
     }

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cozy Sign In / Sign Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBrr8K7onFb4vFcU_E5f4aNwHsSt",
+      authDomain: "web-store-3f40.firebaseapp.com",
+      projectId: "web-store-3f40",
+      storageBucket: "web-store-3f40.appspot.com",
+      messagingSenderId: "173269597997",
+      appId: "1:173269597997:web-9087bcfbd5f153c859d9de",
+      measurementId: "G-G4MF2FX6P0"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <style>
+    body { background: #f7f6f3; font-family: 'Segoe UI', Arial, sans-serif; }
+    .center-box {
+      max-width: 420px;
+      margin: 60px auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(34,34,34,0.07);
+      padding: 2.5rem 2rem 2rem 2rem;
+    }
+    .tab-row {
+      display: flex;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 2rem;
+    }
+    .tab-btn {
+      flex: 1;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #888;
+      padding: 0.7rem 0;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-bottom 0.2s;
+    }
+    .tab-btn.active {
+      color: #23222b;
+      border-bottom: 2px solid #e2b887;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      margin-bottom: 1.2rem;
+    }
+    input {
+      padding: 0.7rem;
+      border-radius: 8px;
+      border: 1px solid #e2b887;
+      font-size: 1rem;
+      background: #f9f7f2;
+    }
+    button[type="submit"], .google-btn, #setNameBtn {
+      background: #e2b887;
+      color: #23222b;
+      border: none;
+      border-radius: 8px;
+      padding: 0.8rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      font-size: 1.05rem;
+      box-shadow: 0 2px 8px rgba(34,34,34,0.04);
+      transition: background 0.2s;
+    }
+    button[type="submit"]:hover, .google-btn:hover, #setNameBtn:hover {
+      background: #f1d6b8;
+    }
+    .error {
+      color: #d33;
+      font-size: 0.95rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .google-btn {
+      background: #fff;
+      color: #23222b;
+      border: 1px solid #e2b887;
+      border-radius: 8px;
+      padding: 0.7rem;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      font-size: 1rem;
+      box-shadow: 0 2px 8px rgba(34,34,34,0.04);
+      transition: background 0.2s;
+    }
+    .google-btn img {
+      width: 22px;
+      height: 22px;
+    }
+    #userName {
+      text-align: center;
+      margin-top: 1.2rem;
+      color: #2a7c2a;
+      font-weight: bold;
+    }
+    #setNameForm {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.7rem;
+      margin-top: 1.2rem;
+    }
+    #setNameInput {
+      padding: 0.7rem;
+      border-radius: 8px;
+      border: 1px solid #e2b887;
+      font-size: 1rem;
+      background: #f9f7f2;
+      width: 80%;
+      margin-bottom: 0.5rem;
+    }
+    #setNameError {
+      color: #d33;
+      font-size: 0.95rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="center-box">
+    <div class="tab-row">
+      <button class="tab-btn active" id="signInTab">Sign In</button>
+      <button class="tab-btn" id="signUpTab">Sign Up</button>
+    </div>
+    <form id="signInForm">
+      <input type="email" id="signInEmail" placeholder="E-mail *" required>
+      <input type="password" id="signInPassword" placeholder="Password *" required minlength="6">
+      <button type="submit">Sign In</button>
+      <div class="error" id="signInError"></div>
+    </form>
+    <form id="signUpForm" style="display:none;">
+      <div style="display:flex; gap:1rem;">
+        <input type="text" id="signUpFirstName" placeholder="First Name *" required style="flex:1;">
+        <input type="text" id="signUpLastName" placeholder="Last Name *" required style="flex:1;">
+      </div>
+      <input type="email" id="signUpEmail" placeholder="E-mail *" required>
+      <input type="password" id="signUpPassword" placeholder="Password *" required minlength="6">
+      <input type="password" id="signUpPassword2" placeholder="Confirm Password *" required minlength="6">
+      <button type="submit">Sign Up &rarr;</button>
+      <div class="error" id="signUpError"></div>
+    </form>
+    <button class="google-btn" id="googleSignInBtn">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google">
+      Sign In / Sign Up with Google
+    </button>
+    <div id="userName"></div>
+    <form id="setNameForm" style="display:none;">
+      <input type="text" id="setNameInput" placeholder="Set your name" required>
+      <button type="button" id="setNameBtn">Save Name</button>
+      <div class="error" id="setNameError"></div>
+    </form>
+  </div>
+  <script>
+    const auth = firebase.auth();
+
+    // Tab switching
+    const signInTab = document.getElementById('signInTab');
+    const signUpTab = document.getElementById('signUpTab');
+    const signInForm = document.getElementById('signInForm');
+    const signUpForm = document.getElementById('signUpForm');
+    signInTab.onclick = function() {
+      signInTab.classList.add('active');
+      signUpTab.classList.remove('active');
+      signInForm.style.display = '';
+      signUpForm.style.display = 'none';
+    };
+    signUpTab.onclick = function() {
+      signUpTab.classList.add('active');
+      signInTab.classList.remove('active');
+      signUpForm.style.display = '';
+      signInForm.style.display = 'none';
+    };
+
+    // Show set name form
+    function showSetNameForm(user) {
+      document.getElementById('setNameForm').style.display = '';
+      document.getElementById('setNameInput').value = user.displayName || '';
+      document.getElementById('userName').textContent = "Welcome, " + (user.displayName || user.email);
+    }
+
+    // Hide set name form
+    function hideSetNameForm() {
+      document.getElementById('setNameForm').style.display = 'none';
+    }
+
+    // Sign In logic
+    signInForm.onsubmit = function(e) {
+      e.preventDefault();
+      const email = document.getElementById('signInEmail').value.trim();
+      const password = document.getElementById('signInPassword').value;
+      document.getElementById('signInError').textContent = '';
+      auth.signInWithEmailAndPassword(email, password)
+        .then(result => {
+          showSetNameForm(result.user);
+        })
+        .catch(error => {
+          document.getElementById('signInError').textContent = error.message;
+        });
+    };
+
+    // Sign Up logic
+    signUpForm.onsubmit = function(e) {
+      e.preventDefault();
+      const firstName = document.getElementById('signUpFirstName').value.trim();
+      const lastName = document.getElementById('signUpLastName').value.trim();
+      const email = document.getElementById('signUpEmail').value.trim();
+      const password = document.getElementById('signUpPassword').value;
+      const password2 = document.getElementById('signUpPassword2').value;
+      document.getElementById('signUpError').textContent = '';
+      if (password.length < 6) {
+        document.getElementById('signUpError').textContent = "Password must be at least 6 characters.";
+        return;
+      }
+      if (password !== password2) {
+        document.getElementById('signUpError').textContent = "Passwords do not match.";
+        return;
+      }
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(result => {
+          showSetNameForm(result.user);
+        })
+        .catch(error => {
+          document.getElementById('signUpError').textContent = error.message;
+        });
+    };
+
+    // Google Sign In
+    document.getElementById('googleSignInBtn').onclick = function() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider)
+        .then(result => {
+          showSetNameForm(result.user);
+        })
+        .catch(error => {
+          alert(error.message);
+        });
+    };
+
+    // Set Name logic
+    document.getElementById('setNameBtn').onclick = function() {
+      const user = auth.currentUser;
+      const newName = document.getElementById('setNameInput').value.trim();
+      document.getElementById('setNameError').textContent = '';
+      if (!newName) {
+        document.getElementById('setNameError').textContent = "Name cannot be empty.";
+        return;
+      }
+      user.updateProfile({ displayName: newName })
+        .then(() => {
+          document.getElementById('userName').textContent = "Welcome, " + newName;
+          hideSetNameForm();
+        })
+        .catch(error => {
+          document.getElementById('setNameError').textContent = error.message;
+        });
+    };
+  </script>
+</body>
+</html>

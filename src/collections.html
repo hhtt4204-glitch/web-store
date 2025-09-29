@@ -162,6 +162,58 @@
       color: #aaa;
       font-size: 1rem;
     }
+    /* Cozy accordion styles for STEAM section */
+.steam-accordion {
+  max-width: 900px;
+  margin: 2rem auto 0 auto;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(34,34,34,0.07);
+  background: var(--card-bg-light);
+  padding: 2rem 1.5rem;
+}
+body.dark-mode .steam-accordion {
+  background: var(--card-bg-dark);
+}
+.steam-region + .steam-region {
+  margin-top: 1.2rem;
+}
+.region-toggle {
+  width: 100%;
+  background: var(--accent-cozy);
+  color: #23222b;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 2px 8px rgba(34,34,34,0.04);
+}
+.region-toggle:hover {
+  background: #f1d6b8;
+}
+.region-products {
+  display: none;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+.region-products .product-card {
+  min-width: 140px;
+  max-width: 180px;
+  margin-bottom: 1rem;
+  background: var(--card-bg-light);
+  color: var(--text-light);
+  box-shadow: var(--shadow-cozy);
+}
+body.dark-mode .region-products .product-card {
+  background: var(--card-bg-dark);
+  color: var(--text-dark);
+}
   </style>
 </head>
 <body>
@@ -177,7 +229,7 @@
     </button>
   </header>
   <main>
-    <div class="collection-title">Free Fire Diamond Collection</div>
+    <div class="collection-title">Collections</div>
     <div class="products-grid">
       <div class="product-card">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjxb7VWyBuX-aSDrucrdqtKsTaCfPDAKUt2ECWRF0rGNmGWngv" alt="100 Diamond">
@@ -216,6 +268,165 @@
         <button>Buy Now</button>
       </div>
     </div>
+
+    <div class="collection-title" style="margin-top:3rem;">STEAM</div>
+    <div class="steam-accordion">
+      <div class="steam-region">
+        <button class="region-toggle">STEAM EUR</button>
+        <div class="region-products">
+          <div class="product-card">
+            <div class="diamond-amount">Steam 10€</div>
+            <div class="price">45 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">Steam 100€</div>
+            <div class="price">396 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">Steam 50€</div>
+            <div class="price">201 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">Steam 20€</div>
+            <div class="price">85 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">Steam 5€</div>
+            <div class="price">27 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+        </div>
+      </div>
+      <div class="steam-region">
+        <button class="region-toggle">STEAM USD</button>
+        <div class="region-products">
+          <div class="product-card">
+            <div class="diamond-amount">Steam 10$</div>
+            <div class="price">40 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">Steam 20$</div>
+            <div class="price">80 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">Steam 5$</div>
+            <div class="price">22 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">Steam 50$</div>
+            <div class="price">195 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">Steam 100$</div>
+            <div class="price">380 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+        </div>
+      </div>
+      <div class="steam-region">
+        <button class="region-toggle">STEAM CHINE</button>
+        <div class="region-products">
+          <div class="product-card">
+            <div class="diamond-amount">20 CNY</div>
+            <div class="price">17 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">200 CNY</div>
+            <div class="price">125 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">60 CNY</div>
+            <div class="price">40 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">40 CNY</div>
+            <div class="price">32 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">100 CNY</div>
+            <div class="price">70 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">30 CNY</div>
+            <div class="price">30 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+        </div>
+      </div>
+      <div class="steam-region">
+        <button class="region-toggle">STEAM BRAZIL</button>
+        <div class="region-products">
+          <div class="product-card">
+            <div class="diamond-amount">30 BRL</div>
+            <div class="price">32 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">10 BRL</div>
+            <div class="price">12 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">150 BRL</div>
+            <div class="price">120 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">200 BRL</div>
+            <div class="price">165 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">100 BRL</div>
+            <div class="price">86 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">50 BRL</div>
+            <div class="price">42 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+        </div>
+      </div>
+      <div class="steam-region">
+        <button class="region-toggle">STEAM UKRAINE</button>
+        <div class="region-products">
+          <div class="product-card">
+            <div class="diamond-amount">Steam 500 UAH</div>
+            <div class="price">75 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">Steam 100 UAH</div>
+            <div class="price">20 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">Steam 1000 UAH</div>
+            <div class="price">125 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+          <div class="product-card">
+            <div class="diamond-amount">Steam 200 UAH</div>
+            <div class="price">30 TND</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
   <footer>
     &copy; 2025 Astro Store. All rights reserved.
@@ -223,6 +434,29 @@
   <script>
     document.getElementById('dark-mode-toggle').addEventListener('click', function() {
       document.body.classList.toggle('dark-mode');
+    });
+
+    // Accordion logic for STEAM regions
+    document.querySelectorAll('.region-toggle').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const products = this.nextElementSibling;
+        // Close others
+        document.querySelectorAll('.region-products').forEach(el => {
+          if (el !== products) el.style.display = 'none';
+        });
+        // Toggle current
+        products.style.display = (products.style.display === 'flex') ? 'none' : 'flex';
+        if (products.style.display === 'flex') {
+          products.style.flexWrap = 'wrap';
+        }
+      });
+    });
+
+    // Buy Now button action (show alert for demo)
+    document.querySelectorAll('.buy-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        alert('Thank you for your interest! Please contact us to complete your purchase.');
+      });
     });
   </script>
 </body>
