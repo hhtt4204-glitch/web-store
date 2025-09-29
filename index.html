@@ -88,8 +88,8 @@
     }
     .auth-top-links {
       position: absolute;
-      top: 38px;     /* move down */
-      right: 180px;  /* move left */
+      top: 38px;
+      right: 180px;
       font-size: 1.08rem;
       z-index: 12;
       display: flex;
@@ -174,7 +174,7 @@
     }
     .center-box {
       max-width: 420px;
-      margin: 60px 0 60px 80px; /* Top, Right, Bottom, Left */
+      margin: 60px 0 60px 80px;
       background: #fff;
       border-radius: 12px;
       box-shadow: 0 4px 24px rgba(34,34,34,0.07);
@@ -209,28 +209,26 @@
       <a href="collections.html" class="cozy-link-card">Cozy Collections</a>
       <a href="contact.html" class="cozy-link-card">Contact Us</a>
     </div>
-    <div class="center-box">
-    </div>
   </main>
   <footer>
     &copy; 2025 Astro Store. All rights reserved.
   </footer>
   <!-- Firebase App (the core Firebase SDK) -->
-<script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js"></script>
-<!-- Firebase Authentication -->
-<script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js"></script>
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyBrr8K7onFb4vFcU_E5f4aNwHsSt",
-    authDomain: "web-store-3f40.firebaseapp.com",
-    projectId: "web-store-3f40",
-    storageBucket: "web-store-3f40.appspot.com",
-    messagingSenderId: "173269597997",
-    appId: "1:173269597997:web-9087bcfbd5f153c859d9de",
-    measurementId: "G-G4MF2FX6P0"
-  };
-  firebase.initializeApp(firebaseConfig);
-</script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js"></script>
+  <!-- Firebase Authentication -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBrr8K7onFb4vFcU_E5f4aNwHsSt",
+      authDomain: "web-store-3f40.firebaseapp.com",
+      projectId: "web-store-3f40",
+      storageBucket: "web-store-3f40.appspot.com",
+      messagingSenderId: "173269597997",
+      appId: "1:173269597997:web-9087bcfbd5f153c859d9de",
+      measurementId: "G-G4MF2FX6P0"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
   <script>
     // Dark mode toggle logic
     const toggleBtn = document.getElementById('dark-mode-toggle');
@@ -238,12 +236,12 @@
     function updateDarkModeIcon() {
       if (document.body.classList.contains('dark-mode')) {
         // In dark mode: show sun icon (for switching to light)
-        icon.src = "https://cdn-icons-png.flaticon.com/512/869/869869.png"; // sun icon
+        icon.src = "https://cdn-icons-png.flaticon.com/512/869/869869.png";
         icon.style.filter = "brightness(1.2) sepia(1) hue-rotate(10deg) saturate(5)";
         toggleBtn.title = "Switch to light mode";
       } else {
         // In light mode: show moon icon (for switching to dark)
-        icon.src = "https://cdn-icons-png.flaticon.com/512/5261/5261850.png"; // moon icon
+        icon.src = "https://cdn-icons-png.flaticon.com/512/5261/5261850.png";
         icon.style.filter = "";
         toggleBtn.title = "Switch to dark mode";
       }
